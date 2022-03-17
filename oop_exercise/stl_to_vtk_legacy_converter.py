@@ -1,8 +1,8 @@
+from base_vtk_legacy_converter import BaseVtkLegacyConverter
 import sys
 sys.path.append(
     "/home/ksato/ExternalSSD1T/VTK/build/lib/python3.8/site-packages/")
 import vtkmodules.all as vtk
-from base_vtk_legacy_converter import BaseVtkLegacyConverter
 
 
 class STLToVtkLegacyConverter(BaseVtkLegacyConverter):
@@ -14,7 +14,6 @@ class STLToVtkLegacyConverter(BaseVtkLegacyConverter):
         vtk_obj_data = obj_reader.GetOutput()
         # Pack points into object_3d.points.
         num_points = vtk_obj_data.GetNumberOfPoints()
-        print("num_total_points:", num_points)
         for point_id in range(num_points):
             point = vtk_obj_data.GetPoint(point_id)  # これでやっと頂点座標にアクセスできる。
             x = point[0]
@@ -24,9 +23,7 @@ class STLToVtkLegacyConverter(BaseVtkLegacyConverter):
 
         # Pack cell into object_3d.cells.
         num_cells = vtk_obj_data.GetNumberOfCells()
-        print("num_total_cells:", num_cells)
         for cell_id in range(num_cells):
-            # print("cell:", cell_id)
             cell_data = vtk_obj_data.GetCell(cell_id)
             cell_point_ids = vtk.vtkIdList()
             vtk_obj_data.GetCellPoints(cell_id, cell_point_ids)
@@ -40,10 +37,16 @@ class STLToVtkLegacyConverter(BaseVtkLegacyConverter):
 
             # Pack cell_type into object_3d.cell_types.
             cell_type = cell_data.GetCellType()
-            # print(cell_type)
-            self.object_3d.cell_types.append(cell_type)
+            cell_type_str = self.CellTypeFromVtk2Str(cell_type)
+            self.object_3d.cell_types.append(cell_type_str)
 
-        print("Completed parsing.")
+    def CellTypeFromVtk2Str(self, cell_type):
+        ret_str = "unkwnon"
+        if cell_type == 5:
+            ret_str = "tri"
+        elif cell_type == 10:
+            ret_str = "tetra"
+        return ret_str
 
 
 if __name__ == "__main__":

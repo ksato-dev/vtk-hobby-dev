@@ -17,8 +17,8 @@ def SelectWriter(fmt_type_str, out_original_fmt_file, obj_3d_data):
 if __name__ == "__main__":
     fmt_ext_str = "fmt1"
     # obj_3d_file = "/home/ksato/ExternalSSD1T/dataset/vtk/Stanford_Bunny.stl"
-    obj_3d_file = "/home/ksato/ExternalSSD1T/dataset/vtk/stl_to_vtk_legacy.vtk"
-    out_original_fmt_file = "/home/ksato/ExternalSSD1T/dataset/vtk/teapot." + fmt_ext_str
+    obj_3d_file = "/home/ksato/ExternalSSD1T/dataset/vtk/test.vtk"
+    out_original_fmt_file = "/home/ksato/ExternalSSD1T/dataset/vtk/test." + fmt_ext_str
 
     # stl_reader = vtk.vtkSTLReader()
     obj_reader = vtk.vtkDataSetReader()

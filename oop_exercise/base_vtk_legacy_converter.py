@@ -1,8 +1,8 @@
 class Object3D(object):
     def __init__(self):
-        self.points = list(list())
-        self.cells = list(list())
-        self.cell_types = list()
+        self.points = list(list())  # [[x0, y0, z0], [x1, y1, z1], ...]
+        self.cells = list(list())  # [[pid00, pid01, ...], [pid10, pid11, ..]]
+        self.cell_types = list()  # [cell_type0, cell_type1, ...]
 
 
 class BaseVtkLegacyConverter(object):
@@ -11,7 +11,9 @@ class BaseVtkLegacyConverter(object):
 
     def Execute(self, in_file_name, out_file_name):
         self.ReadFile(in_file_name)
+        print("Done parsing.")
         self.Write(out_file_name)
+        print("Done writing.")
 
     def ReadFile(self, in_file_name):
         """Need override."""
@@ -61,7 +63,16 @@ class BaseVtkLegacyConverter(object):
             # Write cell_types section. ---
             file_obj.write("CELL_TYPES " + str(num_cells) + "\n")
             for cell_id in range(num_cells):
-                cell_type = self.object_3d.cell_types[cell_id]
+                cell_type_str = self.object_3d.cell_types[cell_id]
+                cell_type = self.CellTypeFromStr2Vtk(cell_type_str)
                 file_obj.write(str(cell_type))
                 file_obj.write("\n")
-           # --- Write cells section.
+            # --- Write cells section.
+
+    def CellTypeFromStr2Vtk(self, cell_type_str):
+        ret_cell_type = -1
+        if cell_type_str == "tri":
+            ret_cell_type = 5
+        elif cell_type_str == "tetra":
+            ret_cell_type = 10
+        return ret_cell_type

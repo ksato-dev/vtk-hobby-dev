@@ -1,8 +1,4 @@
-import sys
-sys.path.append("/home/ksato/ExternalSSD1T/VTK/build/lib/python3.8/site-packages/")
-
-# import vtk
-# from vtkmodules import *
+from libs import common
 import vtkmodules.all as vtk
 
 object_3d_file = "/home/ksato/ExternalSSD1T/dataset/vtk/test5.vtk"

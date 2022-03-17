@@ -55,19 +55,3 @@ class BaseOriginalFmtConverter(metaclass=ABCMeta):
     @abstractmethod
     def write(self):
         pass
-
-
-if __name__ == "__main__":
-    # obj_3d_file = "/home/ksato/ExternalSSD1T/dataset/vtk/Stanford_Bunny.stl"
-    obj_3d_file = "/home/ksato/ExternalSSD1T/dataset/vtk/Stanford_Bunny.vtk"
-    # obj_3d_file = "/home/ksato/ExternalSSD1T/dataset/vtk/test5.vtk"
-    out_fmt1_file = "/home/ksato/ExternalSSD1T/dataset/vtk/Stanford_Bunny.fmt1"
-
-    # stl_reader = vtk.vtkSTLReader()
-    obj_reader = vtk.vtkDataSetReader()
-    obj_reader.SetFileName(obj_3d_file)
-    obj_reader.Update()
-
-    stl_data = obj_reader.GetOutput()
-    writer = BaseOriginalFmtConverter(out_fmt1_file, stl_data)
-    writer.execute()

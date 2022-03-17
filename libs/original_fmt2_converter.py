@@ -65,24 +65,8 @@ class OriginalFmt2Converter(BaseOriginalFmtConverter):
             # Write data.
             for cell_id in tqdm(range(num_cells)):
                 cell_type = self.object_3d.cell_types[cell_id]
-                cell_type_str = common.CellType2Str(cell_type)
+                cell_type_str = common.cell_type_2_str(cell_type)
                 file_obj.write(cell_type_str)
                 file_obj.write("\n")
 
             # --- Write cells section.
-
-
-if __name__ == "__main__":
-    # obj_3d_file = "/home/ksato/ExternalSSD1T/dataset/vtk/Stanford_Bunny.stl"
-    obj_3d_file = "/home/ksato/ExternalSSD1T/dataset/vtk/Stanford_Bunny.vtk"
-    # obj_3d_file = "/home/ksato/ExternalSSD1T/dataset/vtk/test5.vtk"
-    out_fmt1_file = "/home/ksato/ExternalSSD1T/dataset/vtk/Stanford_Bunny.fmt1"
-
-    # stl_reader = vtk.vtkSTLReader()
-    obj_reader = vtk.vtkDataSetReader()
-    obj_reader.SetFileName(obj_3d_file)
-    obj_reader.Update()
-
-    stl_data = obj_reader.GetOutput()
-    writer = OriginalFmt2Converter(out_fmt1_file, stl_data)
-    writer.execute()

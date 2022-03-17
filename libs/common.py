@@ -10,7 +10,7 @@ class Object3D(object):
         self.cell_types = list()
 
 
-def CellType2Str(cell_type):
+def cell_type_2_str(cell_type):
     ret_str = "unkwnon"
     if cell_type == 5:
        ret_str = "tri"

@@ -46,24 +46,8 @@ class OriginalFmt1Converter(BaseOriginalFmtConverter):
                 cell_str = [str(point_id) for point_id in cell]
                 cell_str = ",".join(cell_str)
 
-                cell_info_str = common.CellType2Str(
+                cell_info_str = common.cell_type_2_str(
                     cell_type) + "," + str(cell_id) + "," + cell_str + "\n"
                 file_obj.write(cell_info_str)
 
             # --- Write cells section.
-
-
-if __name__ == "__main__":
-    # obj_3d_file = "/home/ksato/ExternalSSD1T/dataset/vtk/Stanford_Bunny.stl"
-    obj_3d_file = "/home/ksato/ExternalSSD1T/dataset/vtk/Stanford_Bunny.vtk"
-    # obj_3d_file = "/home/ksato/ExternalSSD1T/dataset/vtk/test5.vtk"
-    out_fmt1_file = "/home/ksato/ExternalSSD1T/dataset/vtk/Stanford_Bunny.fmt1"
-
-    # stl_reader = vtk.vtkSTLReader()
-    obj_reader = vtk.vtkDataSetReader()
-    obj_reader.SetFileName(obj_3d_file)
-    obj_reader.Update()
-
-    stl_data = obj_reader.GetOutput()
-    writer = OriginalFmt1Converter(out_fmt1_file, stl_data)
-    writer.execute()

@@ -11,14 +11,14 @@ class BaseOriginalFmtConverter(metaclass=ABCMeta):
 
     def execute(self):
         print("Now parsing...")
-        self.parse()
+        self.vtk_data_2_object_3d()
         print("Done parsing.")
         print("")
         print("Now writing...")
         self.write()
         print("Done writing.")
 
-    def parse(self):
+    def vtk_data_2_object_3d(self):
         # Pack points into object_3d.points.
         num_points = self.vtk_obj_data.GetNumberOfPoints()
         print("num_total_points:", num_points)

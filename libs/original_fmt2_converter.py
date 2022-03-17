@@ -53,13 +53,13 @@ class OriginalFmt2Converter(BaseOriginalFmtConverter):
 
             file_obj.write("\n")
 
-            # Write cells section. ---
+            # Write cell_types section. ---
             num_cells = self.vtk_obj_data.GetNumberOfCells()
             print("num_total_cells:", num_cells)
 
             # Write header.
-            file_obj.write("[cells]\n")
-            file_obj.write("cell_id:(point_id0,point_id1,...)\n")
+            file_obj.write("[cell_types]\n")
+            file_obj.write("cell_type\n")
             file_obj.write("===\n")
 
             # Write data.
@@ -70,7 +70,6 @@ class OriginalFmt2Converter(BaseOriginalFmtConverter):
                 file_obj.write("\n")
 
             # --- Write cells section.
-            print("Completed parsing.")
 
 
 if __name__ == "__main__":

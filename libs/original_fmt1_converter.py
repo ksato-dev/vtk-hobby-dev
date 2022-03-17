@@ -51,7 +51,6 @@ class OriginalFmt1Converter(BaseOriginalFmtConverter):
                 file_obj.write(cell_info_str)
 
             # --- Write cells section.
-            print("Completed parsing.")
 
 
 if __name__ == "__main__":

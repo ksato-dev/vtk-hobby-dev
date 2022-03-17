@@ -10,10 +10,11 @@ class BaseVtkLegacyConverter(object):
         self.object_3d = Object3D()
 
     def Execute(self, in_file_name, out_file_name):
-        self.ReadFile(in_file_name)  # Need override.
+        self.ReadFile(in_file_name)
         self.Write(out_file_name)
 
     def ReadFile(self, in_file_name):
+        """Need override."""
         pass
 
     def Write(self, out_file_name):
@@ -46,7 +47,6 @@ class BaseVtkLegacyConverter(object):
             num_cells_attributes += num_cells
             file_obj.write("CELLS " + str(num_cells) + " " +
                            str(num_cells_attributes) + " \n")
-            # Write data.
             for cell_id in range(num_cells):
                 cell = self.object_3d.cells[cell_id]
                 cell_str = [str(point_id) for point_id in cell]
@@ -60,10 +60,8 @@ class BaseVtkLegacyConverter(object):
 
             # Write cell_types section. ---
             file_obj.write("CELL_TYPES " + str(num_cells) + "\n")
-            # Write data.
             for cell_id in range(num_cells):
                 cell_type = self.object_3d.cell_types[cell_id]
                 file_obj.write(str(cell_type))
                 file_obj.write("\n")
-
-            # --- Write cells section.
+           # --- Write cells section.

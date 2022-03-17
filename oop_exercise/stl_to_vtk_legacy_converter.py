@@ -47,9 +47,10 @@ class STLToVtkLegacyConverter(BaseVtkLegacyConverter):
 
 
 if __name__ == "__main__":
-    in_bunny_obj_file = "/home/ksato/ExternalSSD1T/dataset/vtk/Stanford_Bunny.stl"
-    # in_bunny_obj_file = "/home/ksato/ExternalSSD1T/dataset/vtk/Stanford_Bunny_usg.4.2.vtk"
-    out_bunny_obj_file = "/home/ksato/ExternalSSD1T/dataset/vtk/stl_to_vtk_legacy.vtk"
+    # in_bunny_obj_file = "/home/ksato/ExternalSSD1T/dataset/vtk/Stanford_Bunny.stl"
+    # out_bunny_obj_file = "/home/ksato/ExternalSSD1T/dataset/vtk/stl_to_vtk_legacy.vtk"
+    in_obj_file = "/home/ksato/ExternalSSD1T/dataset/vtk/teapot.stl"
+    out_obj_file = "/home/ksato/ExternalSSD1T/dataset/vtk/stl_to_vtk_legacy.vtk"
 
     converter = STLToVtkLegacyConverter()
-    converter.Execute(in_bunny_obj_file, out_bunny_obj_file)
+    converter.Execute(in_obj_file, out_obj_file)
